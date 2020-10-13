@@ -9,7 +9,9 @@ function setup() {
 
 function draw() {
   // setup
-  background(200);
+  background(250);
+  stroke(200);
+  rect(1, 1, 998, 998);
 
 
   // ding dong
@@ -36,9 +38,9 @@ function draw() {
   line(234,363,163,264);
   
   // grey box because I don't feel like deleting the old stuff yet
-  fill(200, 200, 200);
-  stroke(200, 200, 200);
-  rect(0, 0, 500, 500);
+  fill(250);
+  stroke(250);
+  rect(2, 2, 500, 500);
 
 
   /*
