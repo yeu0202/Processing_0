@@ -7,7 +7,6 @@ var blinking_timer = 0;
 
 function setup() {
   createCanvas(1000, 1000);
-  smooth();
   background(250);
   stroke(200);
   rect(1, 1, 998, 998);
@@ -124,8 +123,8 @@ function draw() {
   line(250, 800, 750, 800);
   //cheeks
   var arc_radius = 235;
-  arc(283, 687, arc_radius, arc_radius, PI/2+0.28, 3*PI/2-0.28, OPEN);
-  arc(1000-283, 687, arc_radius, arc_radius, PI + (PI/2+0.28), PI + (3*PI/2-0.28), OPEN);
+  arc(283, 687, arc_radius, arc_radius, PI/2+0.28, 3*PI/2-0.27, OPEN);
+  arc(1000-283, 687, arc_radius, arc_radius, PI + (PI/2+0.27), PI + (3*PI/2-0.28), OPEN);
 
   // feet
   arc(330, 780, 125, 115, PI-0.5, 0+0.5, CHORD);
@@ -156,7 +155,7 @@ function draw() {
     stroke(0, 0, 0);
     ellipse(400+left_X_shift, 500+left_Y_shift, 30, 100);
     ellipse(600+right_X_shift, 500+right_Y_shift, 30, 100);
-    fill(200,200,200);
+    fill(230,230,230);
     ellipse(395+left_X_shift, 470+left_Y_shift, 10, 10);
     ellipse(595+right_X_shift, 470+right_Y_shift, 10, 10);
   }

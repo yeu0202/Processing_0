@@ -1,0 +1,24 @@
+#help_text{
+    position: absolute;
+    font-size: 30px;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+#fps_text{
+    position: absolute;
+    font-size: 14px;
+    margin-left: 15px;
+    margin-top: 45px;
+}
+canvas{
+    position: absolute;
+    margin-left: 450px;
+    margin-top: -5px;
+}
+video{
+    position: absolute;
+    margin-left: 130px;
+    margin-top: -5px;
+    width: 320px !important;
+    height: 240px !important;
+}
