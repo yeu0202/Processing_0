@@ -15,11 +15,11 @@ let size_decrease = 0.95;
 
 let fpsHtml;
 
-
 const sampleSize = 6;
 const maxColor = 765; // 255*3 for grayscale calculation
 
-let imageMode = 4; // set default imageMode
+let imageMode = 8; // set default imageMode
+let maxModes = 8; // set maximum number of modes
 
 
 /* Initialize the two edge kernel Gx and Gy for sobel edge */
@@ -93,19 +93,18 @@ function setup() {
     }
   }*/
   fpsHtml = document.getElementById("fps_text");
-
+  stroke(0, 0, 0, 0);
 }
 
 
 
 function draw() {
   fpsHtml.innerHTML = "FPS: " + frameRate().toFixed(2);
-  stroke(0, 0, 0, 0);
   camera.loadPixels();
+  scale(scaleToCam);
 
 
   if(imageMode == 0){ // squares
-    scale(scaleToCam);
     background(255);
 
     for (let y = 0; y < camHeight; y += sampleSize) {
@@ -121,7 +120,6 @@ function draw() {
   }
 
   if(imageMode == 1){ // circles
-    scale(scaleToCam);
     background(255);
 
     for (let y = 0; y < camHeight; y += sampleSize) {
@@ -136,8 +134,22 @@ function draw() {
     }
   }
 
-  if(imageMode == 2){ // sobel edge
-    scale(scaleToCam);
+  if(imageMode == 2){ // dot size based on pixel darkness
+    background(255);
+  
+    for (let y = 0; y < camHeight; y += sampleSize) {
+      for (let x = 0; x < camWidth; x += sampleSize) {
+        const i = ((y * camWidth) + x) * 4;
+        const r = camera.pixels[i];
+        const g = camera.pixels[i + 1];
+        const b = camera.pixels[i + 2];
+        fill((r+g+b)/3);
+        ellipse(x+sampleSize/2, y+sampleSize/2, sampleSize, sampleSize);
+      }
+    }
+  }
+
+  if(imageMode == 3){ // sobel edge
     background(0);
   
     for (let y = 0; y < camHeight; y += sampleSize) {
@@ -182,8 +194,7 @@ function draw() {
     }
   }
 
-  if(imageMode == 3){ // sobel edge with threshold
-    scale(scaleToCam);
+  if(imageMode == 4){ // sobel edge with threshold
     background(0);
   
     for (let y = 0; y < camHeight; y += sampleSize) {
@@ -230,8 +241,7 @@ function draw() {
     }
   }
 
-  if(imageMode == 4){ // sobel edge with dot size changing
-    scale(scaleToCam);
+  if(imageMode == 5){ // sobel edge with dot size changing
     background(0);
   
     for (let y = 0; y < camHeight; y += sampleSize) {
@@ -276,8 +286,7 @@ function draw() {
     }
   }
 
-  if(imageMode == 5){ // sobel edge with dot size changing better (worse?) detection
-    scale(scaleToCam);
+  if(imageMode == 6){ // sobel edge with dot size changing better (worse?) detection
     background(0);
   
     for (let y = 0; y < camHeight; y += sampleSize) {
@@ -321,6 +330,37 @@ function draw() {
       }
     }
   }
+
+  if(imageMode == 7){ // dot size based on pixel darkness (color)
+    background(255);
+  
+    for (let y = 0; y < camHeight; y += sampleSize) {
+      for (let x = 0; x < camWidth; x += sampleSize) {
+        const i = ((y * camWidth) + x) * 4;
+        const r = camera.pixels[i];
+        const g = camera.pixels[i + 1];
+        const b = camera.pixels[i + 2];
+        fill(r, g, b);
+        ellipse(x+sampleSize/2, y+sampleSize/2, (1-((r+g+b)/3/255))*sampleSize, (1-((r+g+b)/3/255))*sampleSize);
+      }
+    }
+  }
+
+  if(imageMode == 8){ // dot size based on pixel darkness (grayscale)
+    background(255);
+  
+    for (let y = 0; y < camHeight; y += sampleSize) {
+      for (let x = 0; x < camWidth; x += sampleSize) {
+        const i = ((y * camWidth) + x) * 4;
+        const r = camera.pixels[i];
+        const g = camera.pixels[i + 1];
+        const b = camera.pixels[i + 2];
+        fill((r+g+b)/3);
+        ellipse(x+sampleSize/2, y+sampleSize/2, (1-((r+g+b)/3/255))*sampleSize, (1-((r+g+b)/3/255))*sampleSize);
+      }
+    }
+  }
+
 }
 
 
@@ -328,15 +368,15 @@ function draw() {
 
 function mousePressed(){
   imageMode++;
-  if(imageMode > 5) imageMode = 0;
+  if(imageMode > maxModes) imageMode = 0;
 }
 
 
 function keyPressed(){
   if(key == "a") imageMode--;
   if(key == "d") imageMode++;
-  if(imageMode > 5) imageMode = 0;
-  if(imageMode < 0) imageMode = 5;
+  if(imageMode > maxModes) imageMode = 0;
+  if(imageMode < 0) imageMode = maxModes;
 }
 
 

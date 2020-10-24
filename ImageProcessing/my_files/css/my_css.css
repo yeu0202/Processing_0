@@ -1,14 +1,18 @@
-#help_text{
+#all_text{
     position: absolute;
-    font-size: 30px;
     margin-left: 15px;
     margin-top: 10px;
 }
+#title_text{
+    font-size: 30px;
+}
 #fps_text{
-    position: absolute;
     font-size: 14px;
-    margin-left: 15px;
-    margin-top: 45px;
+    margin-top: 10px;
+}
+#help_text{
+    font-size: 16px;
+    margin-top: 280px;
 }
 canvas{
     position: absolute;
@@ -18,7 +22,7 @@ canvas{
 video{
     position: absolute;
     margin-left: 130px;
-    margin-top: -5px;
+    margin-top: 80px;
     width: 320px !important;
     height: 240px !important;
 }
