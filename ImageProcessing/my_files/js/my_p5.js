@@ -77,8 +77,8 @@ function setup() {
 	if (windowHeight < windowWidth) {
 		createCanvas(round(windowHeight * proportion)*size_decrease, windowHeight*size_decrease);
     scaleToCam = width/camWidth;
-    console.log(round(windowHeight * proportion)*size_decrease);
-    console.log(windowHeight*size_decrease);
+    //console.log(round(windowHeight * proportion)*size_decrease);
+    //console.log(windowHeight*size_decrease);
 	} else {
 		createCanvas(windowWidth*size_decrease, round(windowHeight / proportion)*size_decrease);
 		scaleToCam = height/camHeight;
@@ -1067,7 +1067,7 @@ function draw() {
     hueValue = hueValue + 90/360;
     hueValue = hueValue%1; // want cyan as centerish color
     color_out = HSVtoRGB(hueValue, saturationValue, 1);
-    console.log(color_out);
+    //console.log(color_out);
   }
 
 
