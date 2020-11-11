@@ -980,10 +980,18 @@ function setup() {
           //meanGy = (sumRy + sumGy + sumBy)/3;
           absG = Math.hypot((sumRx + sumGx + sumBx)/3, (sumRy + sumGy + sumBy)/3);
           if(absG>90){
-            output.pixels[cam_index] = color_out.r * eye_distance;
-            output.pixels[cam_index+1] = color_out.g * eye_distance;
-            output.pixels[cam_index+2] = color_out.b * eye_distance;
-            output.pixels[cam_index+3] = 255;
+            if(color_out){
+              output.pixels[cam_index] = color_out.r * eye_distance;
+              output.pixels[cam_index+1] = color_out.g * eye_distance;
+              output.pixels[cam_index+2] = color_out.b * eye_distance;
+              output.pixels[cam_index+3] = 255;
+            }
+            else{
+              output.pixels[cam_index] = 200 * eye_distance;
+              output.pixels[cam_index+1] = 200 * eye_distance;
+              output.pixels[cam_index+2] = 200 * eye_distance;
+              output.pixels[cam_index+3] = 255;
+            }
           }
           else{
             output.pixels[cam_index] = 0;
